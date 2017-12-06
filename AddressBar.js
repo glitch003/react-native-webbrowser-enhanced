@@ -62,6 +62,7 @@ class AddressBar extends BaseComponent {
         <TextInput
           ref={TEXT_INPUT_REF}
           autoCapitalize='none'
+          autoCorrect={false}
           defaultValue={this.state.url}
           onSubmitEditing={this.onSubmitEditing}
           onChange={this.handleTextInputChange}
