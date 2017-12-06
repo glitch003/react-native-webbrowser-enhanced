@@ -154,6 +154,7 @@ class Webbrowser extends BaseComponent {
           startInLoadingState
           scalesPageToFit={this.state.scalesPageToFit}
           renderLoading={this.renderLoadingView.bind(this)}
+          {...this.props.webviewProps}
         />
         {this.renderToolbar()}
         <Spinner visible={this.state.loading} />
