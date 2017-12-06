@@ -1,92 +1,91 @@
 
-'use strict';
+'use strict'
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
         TextInput,
-        View,
-        } from 'react-native';
+        View
+        } from 'react-native'
 
 import BaseComponent from './BaseComponent'
 import Utils from './Utils'
 import styles from './styles'
 
-const TEXT_INPUT_REF = 'urlInput';
+const TEXT_INPUT_REF = 'urlInput'
 
 class AddressBar extends BaseComponent {
+  constructor (props) {
+    super(props)
 
-    constructor(props) {
-        super(props);
+    this.inputText = ''
 
-        this.inputText = '';
+    this.state = {
+      url: this.props.url
+    }
 
-        this.state = {
-            url: this.props.url
-        };
-
-        this._bind(
+    this._bind(
                 'handleTextInputChange',
                 'onSubmitEditing'
-        );
-    }
+        )
+  }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            url: nextProps.url
-        });
-    }
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      url: nextProps.url
+    })
+  }
 
-    handleTextInputChange(event) {
-        const url = Utils.sanitizeUrl(event.nativeEvent.text);
-        this.inputText = url;
-    }
+  handleTextInputChange (event) {
+    const url = Utils.sanitizeUrl(event.nativeEvent.text)
+    this.inputText = url
+  }
 
-    onSubmitEditing(event) {
-        this.load();
-    }
+  onSubmitEditing (event) {
+    this.load()
+  }
 
-    load() {
-        const url = this.inputText;
-        if (url === this.props.url) {
-            this.props.onReload();
-        } else {
-            this.props.onLoad(url)
-        }
+  load () {
+    const url = this.inputText
+    if (url === this.props.url) {
+      this.props.onReload()
+    } else {
+      this.props.onLoad(url)
+    }
         // dismiss keyboard
-        this.refs[TEXT_INPUT_REF].blur();
-    }
+    this.refs[TEXT_INPUT_REF].blur()
+  }
 
-    render() {
-        return (
-                <View style={[styles.addressBarRow]}>
-                    <TextInput
-                            ref={TEXT_INPUT_REF}
-                            autoCapitalize="none"
-                            defaultValue={this.state.url}
-                            onSubmitEditing={this.onSubmitEditing}
-                            onChange={this.handleTextInputChange}
-                            clearButtonMode="while-editing"
-                            underlineColorAndroid="white"
-                            style={[styles.addressBarTextInput, this.props.inputColor && {color:this.props.inputColor}]}
+  render () {
+    return (
+      <View style={[styles.addressBarRow]}>
+        <TextInput
+          ref={TEXT_INPUT_REF}
+          autoCapitalize='none'
+          defaultValue={this.state.url}
+          onSubmitEditing={this.onSubmitEditing}
+          onChange={this.handleTextInputChange}
+          clearButtonMode='while-editing'
+          underlineColorAndroid='white'
+          style={[styles.addressBarTextInput, this.props.inputColor && {color: this.props.inputColor}]}
                             />
-                </View>
-        );
-    }
+      </View>
+    )
+  }
 }
 
 AddressBar.propTypes = {
-    url: PropTypes.string,
-    onLoad: PropTypes.func,
-    onReload: PropTypes.func,
-    foregroundColor: PropTypes.string,
-    inputColor: PropTypes.string
-};
+  url: PropTypes.string,
+  onLoad: PropTypes.func,
+  onReload: PropTypes.func,
+  foregroundColor: PropTypes.string,
+  inputColor: PropTypes.string
+}
 
 AddressBar.defaultProps = {
-    url: '',
-    onLoad: (url)=>{},
-    onReload: ()=>{}
-};
+  url: '',
+  onLoad: (url) => {},
+  onReload: () => {}
+}
 
-module.exports = AddressBar;
+module.exports = AddressBar

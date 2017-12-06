@@ -1,54 +1,53 @@
-'use strict';
+'use strict'
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
     TextInput,
-    View,
-	} from 'react-native';
+    View
+    } from 'react-native'
 
 import BaseComponent from './BaseComponent'
 import styles from './styles'
 
 class StatusBar extends BaseComponent {
+  constructor (props) {
+    super(props)
 
-    constructor(props) {
-        super(props);
-
-        this.inputText = '';
-        this.state = {
-            status: this.props.status
-        };
+    this.inputText = ''
+    this.state = {
+      status: this.props.status
     }
+  }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            status: nextProps.status
-        });
-    }
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      status: nextProps.status
+    })
+  }
 
-    render() {
-        return (
-            <View style={styles.statusBar}>
-                <TextInput
-                    value={this.state.status}
-                    style={[styles.statusBarText, this.props.foregroundColor && {color:this.props.foregroundColor}]}
-                    editable={false}
-                    numberOfLines={1}
+  render () {
+    return (
+      <View style={styles.statusBar}>
+        <TextInput
+          value={this.state.status}
+          style={[styles.statusBarText, this.props.foregroundColor && {color: this.props.foregroundColor}]}
+          editable={false}
+          numberOfLines={1}
                 />
 
-            </View>
-        );
-    }
+      </View>
+    )
+  }
 }
 
 StatusBar.propTypes = {
-    status: PropTypes.string,
-    foregroundColor: PropTypes.string
-};
+  status: PropTypes.string,
+  foregroundColor: PropTypes.string
+}
 
 StatusBar.defaultProps = {
-    status: '',
-};
+  status: ''
+}
 
-module.exports = StatusBar;
+module.exports = StatusBar
