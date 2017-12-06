@@ -193,14 +193,19 @@ class Webbrowser extends BaseComponent {
   }
 
   onNavigationStateChange (navState) {
-    this.setState({
+    console.log('nav state change: ' + JSON.stringify(navState))
+    let newState = {
       backButtonEnabled: navState.canGoBack,
       forwardButtonEnabled: navState.canGoForward,
-      currentUrl: navState.url,
       status: navState.title,
       loading: navState.loading,
       scalesPageToFit: true
-    })
+    }
+    // react propogates it's postMessage through here, so we have to filter it out.  URLs like that always start with "react-js-navigation" so we can just check for that at the beginning of the string.
+    if (navState.url.indexOf('react-js-navigation') !== 0) {
+      newState['currentUrl'] = navState.url
+    }
+    this.setState(newState)
 
     this.props.onNavigationStateChange(navState)
   }
