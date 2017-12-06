@@ -24,13 +24,16 @@
     "react-component"
   ],
   "author": "Daniel Korger <dan@imake.io> (https://imake.io)",
-  "contributors": ["ganmor", "JRK"],
+  "contributors": [
+    "ganmor",
+    "JRK"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jreziga/react-native-webbrowser-enhanced/issues"
   },
   "homepage": "https://github.com/jreziga/react-native-webbrowser-enhanced#readme",
   "dependencies": {
-    "react-native-loading-spinner-overlay": "0.3.0"
+    "react-native-loading-spinner-overlay": "^0.5.2"
   }
 }
