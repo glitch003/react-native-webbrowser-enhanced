@@ -10,7 +10,7 @@ import {
 
 import BaseComponent from './BaseComponent'
 import Utils from './Utils'
-import Spinner from 'react-native-loading-spinner-overlay'
+// import Spinner from 'react-native-loading-spinner-overlay'
 
 import styles from './styles'
 
@@ -157,7 +157,6 @@ class Webbrowser extends BaseComponent {
           {...this.props.webviewProps}
         />
         {this.renderToolbar()}
-        <Spinner visible={this.state.loading} />
       </View>
     )
   }
