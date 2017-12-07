@@ -3,10 +3,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  WebView,
   View,
   ActivityIndicator
 } from 'react-native'
+
+import WKWebView from 'react-native-wkwebview-reborn'
 
 import BaseComponent from './BaseComponent'
 import Utils from './Utils'
@@ -141,7 +142,7 @@ class Webbrowser extends BaseComponent {
           {this.renderStatusBar()}
           {this.renderAddressBar()}
         </View>
-        <WebView
+        <WKWebView
           ref={WEBVIEW_REF}
           automaticallyAdjustContentInsets={false}
           style={styles.webView}

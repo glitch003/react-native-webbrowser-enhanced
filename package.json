@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/jreziga/react-native-webbrowser-enhanced#readme",
   "dependencies": {
-    "react-native-loading-spinner-overlay": "^0.5.2"
+    "react-native-loading-spinner-overlay": "^0.5.2",
+    "react-native-wkwebview-reborn": "git+https://github.com/glitch003/react-native-wkwebview.git" 
   }
 }
