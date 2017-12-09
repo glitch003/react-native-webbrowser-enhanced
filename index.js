@@ -4,7 +4,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   View,
-  ActivityIndicator
+  ActivityIndicator,
+  WebView,
+  Platform
 } from 'react-native'
 
 import WKWebView from 'react-native-wkwebview-reborn'
@@ -134,14 +136,9 @@ class Webbrowser extends BaseComponent {
       </View>
     )
   }
-
-  render () {
-    return (
-      <View style={[styles.container, this.props.backgroundColor && {backgroundColor: this.props.backgroundColor}, this.props.style]}>
-        <View style={styles.header}>
-          {this.renderStatusBar()}
-          {this.renderAddressBar()}
-        </View>
+  renderWebview () {
+    if (Platform.OS === 'ios') {
+      return (
         <WKWebView
           ref={WEBVIEW_REF}
           automaticallyAdjustContentInsets={false}
@@ -157,6 +154,36 @@ class Webbrowser extends BaseComponent {
           renderLoading={this.renderLoadingView.bind(this)}
           {...this.props.webviewProps}
         />
+      )
+    } else if (Platform.OS === 'android') {
+      return (
+        <WebView
+          ref={WEBVIEW_REF}
+          automaticallyAdjustContentInsets={false}
+          style={styles.webView}
+          source={{uri: this.state.url}}
+          javaScriptEnabled
+          domStorageEnabled
+          decelerationRate='normal'
+          onNavigationStateChange={this.onNavigationStateChange}
+          onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
+          startInLoadingState
+          scalesPageToFit={this.state.scalesPageToFit}
+          renderLoading={this.renderLoadingView.bind(this)}
+          {...this.props.webviewProps}
+        />
+      )
+    }
+  }
+
+  render () {
+    return (
+      <View style={[styles.container, this.props.backgroundColor && {backgroundColor: this.props.backgroundColor}, this.props.style]}>
+        <View style={styles.header}>
+          {this.renderStatusBar()}
+          {this.renderAddressBar()}
+        </View>
+        {this.renderWebview()}
         {this.renderToolbar()}
       </View>
     )
