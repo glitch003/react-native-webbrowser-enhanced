@@ -95,6 +95,15 @@ class Webbrowser extends BaseComponent {
       onLoad={(url) => { this.load(url) }}
       url={this.state.currentUrl}
       foregroundColor={this.props.foregroundColor}
+      // moved toolbar buttons to top addressbar
+      onBack={this.goBack}
+      onHome={this.goHome}
+      onForward={this.goForward}
+      backButtonEnabled={this.state.backButtonEnabled}
+      forwardButtonEnabled={this.state.forwardButtonEnabled}
+      hideHomeButton={this.props.hideHomeButton}
+      renderHomeButton={this.props.renderHomeButton}
+      onActionButton={this.props.onActionButton}
         />
   }
 
